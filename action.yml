@@ -7,21 +7,18 @@ branding:
 runs:
   using: "composite"
   steps:
-    - name: Get Default Branch
-      if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'major')
+    - name: Pull Request contains 'major' label
+      if: contains(github.event.pull_request.labels.*.name, 'major')
       shell: bash
       run: |
-          echo "default_branch=${{ github.event.repository.default_branch }}"
-          echo "branch=${{ github.ref_name }}"
-          echo "event_name=${{ github.event_name }}"
+          if [[ "${{ github.base_ref }}" == "${{ github.event.repository.default_branch }}" ]]; then
+            echo "It is OK to have 'major' label on Pull Request for 'default' branch"
+          else
+            echo "Label 'major' can NOT be set for 'non-default' branch"
+          fi
 
-    - name: All
+    - name: Pull Request does not contain 'major' label
+      if: "!contains(github.event.pull_request.labels.*.name, 'major')"
       shell: bash
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
       run: |
-          echo "default_branch=${{ github.event.repository.default_branch }}"
-          echo "branch=${{ github.ref_name }}"
-          echo "event_name=${{ github.event_name }}"
-          echo "github=${{ toJson(github) }}"
-          echo "github_event=${{ toJson(github.event) }}"
+          echo "No 'major' label set"
