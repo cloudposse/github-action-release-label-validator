@@ -15,11 +15,19 @@ runs:
           echo "branch=${{ github.ref_name }}"
           echo "event_name=${{ github.event_name }}"
 
+    - name: Print Objects
+      uses: actions/github-script@v4
+      with:
+        script: |
+          console.log(github)
+          console.log(github.event)
+          console.log(github.context.payload)
+
     - name: All
       shell: bash
       run: |
           echo "default_branch=${{ github.event.repository.default_branch }}"
           echo "branch=${{ github.ref_name }}"
           echo "event_name=${{ github.event_name }}"
-          echo "${{ github }}"
-          echo "${{ github.event }}"
+          console.log(github)
+          console.log(github.event)
