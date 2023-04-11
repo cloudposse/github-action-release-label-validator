@@ -22,4 +22,4 @@ runs:
       if: "!contains(github.event.pull_request.labels.*.name, 'major')"
       shell: bash
       run: |
-          echo "No 'major' label set"
+          echo "No 'major' label set. Nothing to validate."
