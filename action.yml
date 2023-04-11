@@ -1,23 +1,23 @@
-name: 'Example composite GitHub action'
-description: 'Example composite GitHub action'
+name: 'Release Label Validator'
+description: 'Validate Pull Request Release Labels'
 author: hello@cloudposse.com
 branding:
   icon: 'file'
   color: 'white'
-inputs:
-  param1:
-    required: true
-    description: "Input parameter placeholder"
-    default: "true"
-outputs:
-  result1:
-    description: "Output result placeholder"
-    value: "${{ steps.context.outputs.action-result }}"
 runs:
   using: "composite"
   steps:
-    - id: context
+    - name: Get Default Branch
+      if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'major')
       shell: bash
       run: |
-          echo "::set-output name=action-result::${{ inputs.param1 }}"
+          echo "default_branch=${{ github.event.repository.default_branch }}"
+          echo "branch=${{ github.ref_name }}"
+          echo "event_name=${{ github.event_name }}"
 
+    - name: All
+      shell: bash
+      run: |
+          echo "default_branch=${{ github.event.repository.default_branch }}"
+          echo "branch=${{ github.ref_name }}"
+          echo "event_name=${{ github.event_name }}"
