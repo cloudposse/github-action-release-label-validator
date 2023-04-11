@@ -15,6 +15,7 @@ runs:
             echo "It is OK to have 'major' label on Pull Request for 'default' branch"
           else
             echo "Label 'major' can NOT be set for 'non-default' branch"
+            exit 1
           fi
 
     - name: Pull Request does not contain 'major' label
