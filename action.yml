@@ -21,7 +21,6 @@ runs:
         script: |
           console.log(github)
           console.log(github.event)
-          console.log(github.context.payload)
 
     - name: All
       shell: bash
