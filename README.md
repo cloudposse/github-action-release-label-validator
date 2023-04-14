@@ -81,7 +81,7 @@ Only Pull Requests created against default branch can have label `major` set.
         - reopened
 
   jobs:
-    publish:
+    validate:
       runs-on: ubuntu-latest
       steps:
         - uses: cloudposse/github-action-release-label-validator@v1
