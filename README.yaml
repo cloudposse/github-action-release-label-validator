@@ -21,7 +21,7 @@ related: []
 description: Only Pull Requests created against default branch can have label `major` set
 
 introduction: |-
-  Only Pull Requests created against default branch can have label `major` set.
+  This is a GitHub Action to validate that only Pull Requests targeting the default branch can have the `major` label set. This is useful in combination with the [`release-drafter`](https://github.com/release-drafter/release-drafter) and the Cloud Posse [`release-branch-manager`](https://github.com/cloudposse/github-action-release-branch-manager) GitHub Actions.
 
 usage: |-
   ```yaml
