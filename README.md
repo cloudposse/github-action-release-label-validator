@@ -28,7 +28,7 @@
 
 -->
 
-Only Pull Requests created against default branch can have label `major` set
+This GitHub Action validates that the major label is only assigned to Pull Requests targeting the default branch, enhancing the management of significant changes.
 
 ---
 
@@ -58,7 +58,7 @@ It's 100% Open Source and licensed under the [APACHE2](LICENSE).
 
 ## Introduction
 
-This is a GitHub Action to validate that only Pull Requests targeting the default branch can have the `major` label set. This is useful in combination with the [`release-drafter`](https://github.com/release-drafter/release-drafter) and the Cloud Posse [`release-branch-manager`](https://github.com/cloudposse/github-action-release-branch-manager) GitHub Actions.
+This is a GitHub Action to validate that only Pull Requests targeting the default branch can have the `major` label set. This is useful in combination with the [`release-drafter`](https://github.com/release-drafter/release-drafter) and the Cloud Posse [`release-branch-manager`](https://github.com/cloudposse/github-action-release-branch-manager) GitHub Actions,  to ensure the `major` label can only be assigned to Pull Requests created against the default branch, ensuring that significant changes are clearly identified and properly managed.
 
 
 
@@ -81,7 +81,7 @@ This is a GitHub Action to validate that only Pull Requests targeting the defaul
         - reopened
 
   jobs:
-    publish:
+    validate:
       runs-on: ubuntu-latest
       steps:
         - uses: cloudposse/github-action-release-label-validator@v1
