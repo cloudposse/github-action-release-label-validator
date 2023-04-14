@@ -1,23 +1,25 @@
-name: 'Example composite GitHub action'
-description: 'Example composite GitHub action'
+name: 'Release Label Validator'
+description: 'Validate Pull Request Release Labels'
 author: hello@cloudposse.com
 branding:
   icon: 'file'
   color: 'white'
-inputs:
-  param1:
-    required: true
-    description: "Input parameter placeholder"
-    default: "true"
-outputs:
-  result1:
-    description: "Output result placeholder"
-    value: "${{ steps.context.outputs.action-result }}"
 runs:
   using: "composite"
   steps:
-    - id: context
+    - name: Pull Request contains 'major' label
+      if: contains(github.event.pull_request.labels.*.name, 'major')
       shell: bash
       run: |
-          echo "::set-output name=action-result::${{ inputs.param1 }}"
+          if [[ "${{ github.base_ref }}" == "${{ github.event.repository.default_branch }}" ]]; then
+            echo "The 'major' label is permitted for Pull Requests targeting the 'default' branch."
+          else
+            echo "The 'major' label cannot be assigned to Pull Requests targeting 'non-default' branches."
+            exit 1
+          fi
 
+    - name: Pull Request does not contain 'major' label
+      if: "!contains(github.event.pull_request.labels.*.name, 'major')"
+      shell: bash
+      run: |
+          echo "No 'major' label set. Nothing to validate."
