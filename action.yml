@@ -12,7 +12,7 @@ runs:
       shell: bash
       run: |
           if [[ "${{ github.base_ref }}" == "${{ github.event.repository.default_branch }}" ]]; then
-            echo "It is OK to have 'major' label on Pull Request for 'default' branch"
+            echo "The 'major' label is permitted for Pull Requests targeting the 'default' branch."
           else
             echo "Label 'major' can NOT be set for 'non-default' branch"
             exit 1
