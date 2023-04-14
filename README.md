@@ -58,7 +58,7 @@ It's 100% Open Source and licensed under the [APACHE2](LICENSE).
 
 ## Introduction
 
-Only Pull Requests created against default branch can have label `major` set.
+This is a GitHub Action to validate that only Pull Requests targeting the default branch can have the `major` label set. This is useful in combination with the [`release-drafter`](https://github.com/release-drafter/release-drafter) and the Cloud Posse [`release-branch-manager`](https://github.com/cloudposse/github-action-release-branch-manager) GitHub Actions.
 
 
 
@@ -81,7 +81,7 @@ Only Pull Requests created against default branch can have label `major` set.
         - reopened
 
   jobs:
-    validate:
+    publish:
       runs-on: ubuntu-latest
       steps:
         - uses: cloudposse/github-action-release-label-validator@v1
@@ -118,6 +118,8 @@ Check out these related projects.
 
 For additional context, refer to some of these links.
 
+- [Release Drafter GitHub Action](https://github.com/release-drafter/release-drafter) - Drafts your next release notes as pull requests are merged into your default branch.
+- [Release Branch Manager GitHub Action](https://en.wikipedia.org/wiki/Test_harness) - Automatically creates "Long Term Support (LTS)" release branches when new releases are published
 
 
 ## Help
