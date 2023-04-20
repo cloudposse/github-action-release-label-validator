@@ -19,3 +19,4 @@ jobs:
       - uses: cloudposse/github-action-major-release-tagger@v1
         with:
           dry-run: 'true'
+          log-level: 'debug'
