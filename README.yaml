@@ -51,8 +51,7 @@ references:
     description: 'Automatically creates "Long Term Support (LTS)" release branches when new releases are published'
     url: "https://en.wikipedia.org/wiki/Test_harness"
 
-include:
-  - "docs/github-action.md"
+include: []
 
 contributors:
   - name: "Zinovii Dmytriv"
